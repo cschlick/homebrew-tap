@@ -1,6 +1,6 @@
-# Homebrew formula — the source of truth lives in the main repo; a release
-# workflow (or a human) copies it into the tap (cschlick/homebrew-tap) with
-# url + sha256 pointing at the tagged tarball.
+# Homebrew formula — the source of truth lives in the main repo; after
+# tagging a release, `sh scripts/release-brew.sh` pins the tag's tarball
+# sha256 here and pushes the copy the tap (cschlick/homebrew-tap) serves.
 #
 # greasewood has no macOS build, on purpose (see docs/macos.md): the daemon is
 # Linux-only, and a Mac joins a mesh via a minimal Lima VM. What brew installs
@@ -11,8 +11,8 @@
 class Greasewood < Formula
   desc "WireGuard mesh node on macOS — Lima VM appliance + Mac-side tooling"
   homepage "https://github.com/cschlick/greasewood"
-  url "https://github.com/cschlick/greasewood/archive/refs/tags/v0.1.3.tar.gz"
-  sha256 "d4c0330e9d0c60ab48353abeee6286b8c33e57ba313f9201533ba60255a9f2fc"
+  url "https://github.com/cschlick/greasewood/archive/refs/tags/v0.1.4.tar.gz"
+  sha256 "df136989cd9421d62ab10e07595b12fb680070dfb030ac8c91578fb9287bd5fe"
   license "MIT"
   head "https://github.com/cschlick/greasewood.git", branch: "main"
 
