@@ -16,6 +16,12 @@ class Greasewood < Formula
   license "MIT"
   head "https://github.com/cschlick/greasewood.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/cschlick/greasewood/releases/download/v0.4.0"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "54b21e83436388c0cee22c9decac23a5a671303492510333df9a809b8c4e50c4"
+  end
+
   depends_on "lima"
 
   def install
