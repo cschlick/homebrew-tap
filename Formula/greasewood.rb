@@ -10,20 +10,18 @@
 class Greasewood < Formula
   desc "Minimal self-hosted WireGuard mesh overlay"
   homepage "https://github.com/cschlick/greasewood"
-  url "https://github.com/cschlick/greasewood/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "92facd68bf969ff97fd43c99a8c8b54c0fc8eac055b3f6deaa7ab222de53c7ac" # pinned by release-brew.sh
+  url "https://github.com/cschlick/greasewood/archive/refs/tags/v0.6.0.tar.gz"
+  sha256 "1b7b4a310285784ccaca5fba74f6539a6814712789781fb2e390a6ae73d83060" # pinned by release-brew.sh
   license "MIT"
 
-  # Bottle hosted in this tap (bottles/ dir) — built on macOS 26/arm64. It is
-  # what makes `brew install` work on a Mac WITHOUT the Xcode CLT: the formula
-  # itself compiles nothing (wheels), but Homebrew's source-build gate refuses
-  # any non-bottled install without the CLT. Future releases publish bottles
-  # via the release workflow; this one was built by hand.
-  bottle do
-    root_url "https://raw.githubusercontent.com/cschlick/homebrew-tap/main/bottles"
-    rebuild 1
-    sha256 arm64_tahoe: "a41d6f9ea6c67a48f9e9b041dd71940b924c165afa5a9d2c29d7a9bccb9bbbc8"
-  end
+  # Bottle hosted in the tap (bottles/ dir) — built by hand on macOS/arm64
+  # per release and pinned here afterwards. It is what makes `brew install`
+  # work on a Mac WITHOUT the Xcode CLT: the formula itself compiles nothing
+  # (wheels), but Homebrew's source-build gate refuses any non-bottled
+  # install without the CLT. (GitHub's macOS runners lag the OS a version, so
+  # their bottles would carry the wrong tag for current Macs — hence by hand.)
+  # The block is (re)added after the release's bottle is built; a stale
+  # previous-version block would make brew chase a bottle that doesn't exist.
   head "https://github.com/cschlick/greasewood.git", branch: "main"
 
   depends_on "python@3.13"
