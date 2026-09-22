@@ -10,8 +10,8 @@
 class Greasewood < Formula
   desc "Minimal self-hosted WireGuard mesh overlay"
   homepage "https://github.com/cschlick/greasewood"
-  url "https://github.com/cschlick/greasewood/archive/refs/tags/v0.6.0.tar.gz"
-  sha256 "1b7b4a310285784ccaca5fba74f6539a6814712789781fb2e390a6ae73d83060" # pinned by release-brew.sh
+  url "https://github.com/cschlick/greasewood/archive/refs/tags/v0.7.0.tar.gz"
+  sha256 "f32abd03a7e3f6cca361a528b268d56feb1829d510ed61618e61cce26a389bfd" # pinned by release-brew.sh
   license "MIT"
 
   # Bottle hosted in the tap (bottles/ dir) — built by hand on macOS/arm64
@@ -22,11 +22,6 @@ class Greasewood < Formula
   # their bottles would carry the wrong tag for current Macs — hence by hand.)
   # The block is (re)added after the release's bottle is built; a stale
   # previous-version block would make brew chase a bottle that doesn't exist.
-  bottle do
-    root_url "https://raw.githubusercontent.com/cschlick/homebrew-tap/main/bottles"
-    rebuild 1
-    sha256 arm64_tahoe: "136729ad6ace0fcec76002fbbdda4037f003d07cba7da1ba56ad4d7d985ecd00"
-  end
   head "https://github.com/cschlick/greasewood.git", branch: "main"
 
   depends_on "python@3.13"
@@ -56,9 +51,9 @@ class Greasewood < Formula
       Both install a launchd daemon (com.greasewood.<mesh>) that starts at
       boot and restarts on failure. Logs: /var/log/greasewood/<mesh>.log
 
-      Port enforcement (the grant table's port scopes) is not available on
-      macOS yet — a pf backend is planned. Tunnel-level access control is
-      fully enforced.
+      Access control (which machines can talk — the grant table, enforced
+      as tunnel existence) works fully on macOS. What flows inside a tunnel
+      is your host firewall's business, on every platform.
     EOS
   end
 
