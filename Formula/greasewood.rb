@@ -10,8 +10,8 @@
 class Greasewood < Formula
   desc "Minimal self-hosted WireGuard mesh overlay"
   homepage "https://github.com/cschlick/greasewood"
-  url "https://github.com/cschlick/greasewood/archive/refs/tags/v0.9.1.tar.gz"
-  sha256 "0c88f09c518df290824f95c934d782bc726a5a6530dcf44849836569add1f19d" # pinned by release-brew.sh
+  url "https://github.com/cschlick/greasewood/archive/refs/tags/v0.9.2.tar.gz"
+  sha256 "657416df2cf56e4a5b7aef2ec95e03e959c37a60333137bea6d19f03495055cb" # pinned by release-brew.sh
   license "MIT"
 
   # Bottle hosted in the tap (bottles/ dir) — built by hand on macOS/arm64
@@ -22,11 +22,6 @@ class Greasewood < Formula
   # their bottles would carry the wrong tag for current Macs — hence by hand.)
   # The block is (re)added after the release's bottle is built; a stale
   # previous-version block would make brew chase a bottle that doesn't exist.
-  bottle do
-    root_url "https://raw.githubusercontent.com/cschlick/homebrew-tap/main/bottles"
-    rebuild 1
-    sha256 arm64_tahoe: "05c164503dca3b0192fa1f3efd608421b35652576908f3f36df5c20e81262a7c"
-  end
   head "https://github.com/cschlick/greasewood.git", branch: "main"
 
   depends_on "python@3.13"
